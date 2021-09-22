@@ -18,11 +18,25 @@ public class EstimateSquare {
 
     protected static final DecimalFormat df = new DecimalFormat("#.##", DecimalFormatSymbols.getInstance(Locale.US));
 
+    /**
+     * Formats a string
+     *
+     * @param decimals the number of decimal places to format to
+     *
+     * @return the formatted string
+     */
     static String format(Object s, int decimals) {
         String f = "%." + decimals + "f";
         return String.format(Locale.US, f, s);
     }
 
+    /**
+     * Check if integer is perfect square
+     *
+     * @param x the integer
+     *
+     * @return x is perfect square
+     */
     static boolean isPerfectSquare(int x) {
         if (x >= 0) {
             int sr = (int) Math.sqrt(x);
@@ -31,6 +45,14 @@ public class EstimateSquare {
         return false;
     }
 
+    /**
+     * Find previous perfect square
+     *
+     * @param n the integer to check for
+     *
+     * @return previous perfect square or n if already a perfect square, and 0 if n
+     *         <=0;
+     */
     static int previousPerfect(int n) {
         if (n > 0) {
             int prevN = (int) Math.floor(Math.sqrt(n));
@@ -41,10 +63,26 @@ public class EstimateSquare {
         }
     }
 
+    /**
+     * Get difference between two numbers
+     *
+     * @param v first value
+     * @param w second value
+     * @return the difference
+     */
     static double getDifference(double v, double w) {
         return Math.abs(v - w);
     }
 
+    /**
+     * Estimate the square using method above
+     *
+     *
+     * @see @description for the method
+     * @param k the integer inside the square root
+     *
+     * @return the estimation
+     */
     static double estimateSquareOf(int k) {
         if (k > 1) {
             if (isPerfectSquare(k)) {
@@ -60,6 +98,13 @@ public class EstimateSquare {
         }
     }
 
+    /**
+     * Find the minimum (non-zero) of an ArrayList
+     *
+     * @param a the list
+     *
+     * @return the minimum
+     */
     static double findMin(ArrayList<Double> a) {
         Double tmp = 1.0;
         for (Double el : a) {
@@ -70,10 +115,15 @@ public class EstimateSquare {
         return tmp;
     }
 
-    static void calculateDiff() {
+    /**
+     * Recursively calculate differences using method and Math.sqrt value
+     *
+     * @param iterations number of iterations
+     */
+    static void calculateDiff(int iterations) {
         ArrayList<Double> diffs = new ArrayList<>();
 
-        for (int i = 2; i < 100; i++) {
+        for (int i = 2; i < iterations; i++) {
             Double diff = getDifference(estimateSquareOf(i), Math.sqrt(i));
             System.out.print("for n=");
             System.out.print(i);
@@ -101,6 +151,10 @@ public class EstimateSquare {
         System.out.println(minIdx);
     }
 
+    /**
+     * Runs standard code
+     *
+     */
     static void run() {
         System.out.print("n: ");
         int in = sc.nextInt();
